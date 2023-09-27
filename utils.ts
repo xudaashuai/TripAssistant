@@ -1,11 +1,11 @@
 import { Message } from "./types.ts";
 
-export function buildReplyResponse(replyMessage: Message) {
+export function buildReplyResponse(replyMessage: Message, content: string) {
   return `<xml>
   <ToUserName>${replyMessage.FromUserName}</ToUserName>
   <FromUserName>${replyMessage.ToUserName}</FromUserName>
   <CreateTime>${Date.now()}</CreateTime>
   <MsgType>text</MsgType>
-  <Content>谢谢侬</Content>
+  <Content>${content}</Content>
 </xml>`;
 }
