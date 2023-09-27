@@ -4,7 +4,7 @@ export const openAI = new OpenAI(Deno.env.get("CHATGPT_SECRET")!);
 export async function chatgpt(content: string) {
   try {
     const response = await openAI.createChatCompletion({
-      model: "gpt-3.5-turbo-instruct-0914",
+      model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: content }],
     });
     return response.choices[0].message.content;
