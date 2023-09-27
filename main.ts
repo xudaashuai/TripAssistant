@@ -10,8 +10,10 @@ async function checkSignature(
   nonce: string
 ) {
   const arr = [TOKEN, timestamp, nonce].sort().join("");
-  const res = new TextDecoder().decode(
-    await crypto.subtle.digest("sha-1", new TextEncoder().encode(arr))
+  const res = encodeHex(
+    new TextDecoder().decode(
+      await crypto.subtle.digest("sha-1", new TextEncoder().encode(arr))
+    )
   );
 
   console.log(res, signature);
