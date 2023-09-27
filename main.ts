@@ -1,4 +1,9 @@
 const TOKEN = Deno.env.get("WECHAT_TOKEN"); // 替换为你在微信公众平台设置的 Token
+import {
+  decodeHex,
+  encodeHex,
+} from "https://deno.land/std@0.203.0/encoding/hex.ts";
+
 async function checkSignature(
   signature: string,
   timestamp: string,
@@ -6,9 +11,7 @@ async function checkSignature(
 ) {
   const arr = [TOKEN, timestamp, nonce].sort().join("");
   const res = new TextDecoder().decode(
-    new Uint8Array(
-      await crypto.subtle.digest("sha-1", new TextEncoder().encode(arr))
-    )
+    await crypto.subtle.digest("sha-1", new TextEncoder().encode(arr))
   );
 
   console.log(res, signature);
