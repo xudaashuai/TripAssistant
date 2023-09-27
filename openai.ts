@@ -1,5 +1,7 @@
 import { OpenAI } from "https://deno.land/x/openai@1.4.2/mod.ts";
-export const openAI = new OpenAI(Deno.env.get("CHATGPT_SECRET")!);
+export const openAI = new OpenAI(Deno.env.get("CHATGPT_SECRET")!, {
+  baseUrl: "https://api.chatanywhere.cn",
+});
 
 export async function chatgpt(content: string) {
   try {
