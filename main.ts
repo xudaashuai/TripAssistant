@@ -36,7 +36,12 @@ async function handleGet(req: Request) {
 
 function handleEvent(message: EventMessage) {
   if (message.Event === "subscribe") {
-    return new Response(buildReplyResponse(message, "谢谢侬"));
+    return new Response(
+      buildReplyResponse(
+        message,
+        "大家好，我是403旅行助手，很高兴为你们的2023年的旅行提供帮助和建议。无论是行程规划、酒店预订还是旅行小贴士，我都在这里为你们服务。请告诉我你们的需求，让我们一起让这次旅行更加完美！"
+      )
+    );
   }
   return new Response();
 }
