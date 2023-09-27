@@ -33,6 +33,8 @@ async function handleGet(req: Request) {
   return new Response();
 }
 
+console.log(Deno.env.toObject());
+
 function handleEvent(message: EventMessage) {
   if (message.Event === "subscribe") {
     return new Response(
