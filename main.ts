@@ -4,6 +4,7 @@ import { parse } from "https://deno.land/x/xml@2.1.1/mod.ts";
 import { EventMessage, Message, TextMessage } from "./types.ts";
 import { buildReplyResponse } from "./utils.ts";
 import { chatgpt } from "./openai.ts";
+import client from "./wechat.ts";
 
 async function checkSignature(
   signature: string,
@@ -40,10 +41,12 @@ function handleEvent(message: EventMessage) {
   return new Response();
 }
 
-async function handleTextMessage(message: TextMessage) {
-  return new Response(
-    buildReplyResponse(message, (await chatgpt(message.Content)) || "出错啦")
-  );
+function handleTextMessage(message: TextMessage) {
+  chatgpt(message.Content).then((res) => {
+    console.log(res);
+    client.sendMessage(message, res);
+  });
+  return new Response();
 }
 
 async function handlePost(req: Request) {

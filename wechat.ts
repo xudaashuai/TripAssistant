@@ -36,7 +36,7 @@ class WechatClient {
     return this.refreshAccessToken();
   }
 
-  async sendMessage(message: Message, content: string) {
+  async sendMessage(message: Message, content?: string) {
     const url = `${BASE_URL}message/custom/send?access_token=${await this.getAccessToken()}`;
     await fetch(
       new Request(url, {

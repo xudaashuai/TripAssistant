@@ -19,7 +19,7 @@ const promot2 = `
 2023 年 10月 9号，在济南返回各自的出发地。
 `;
 
-export async function chatgpt(content: string) {
+export async function chatgpt(content?: string) {
   try {
     const response = await openAI.createChatCompletion({
       model: "gpt-3.5-turbo",
@@ -35,7 +35,7 @@ ${content}
         },
       ],
     });
-    return response.choices[0].message.content;
+    return response.choices[0].message.content || "";
   } catch (e) {
     console.error(e);
   }
