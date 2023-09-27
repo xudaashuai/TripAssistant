@@ -4,8 +4,6 @@ import { Message } from "./types.ts";
 
 const BASE_URL = "https://api.weixin.qq.com/cgi-bin/";
 
-const client = await createWechatClient();
-
 export enum ENDPOINT {
   USER_INFO = "user/info",
 }
@@ -78,8 +76,6 @@ async function getAccessToken(): Promise<string | null> {
   }
 }
 
-async function createWechatClient(): Promise<WechatClient> {
+export default async function createWechatClient(): Promise<WechatClient> {
   return new WechatClient(await Deno.openKv());
 }
-
-export default client;
