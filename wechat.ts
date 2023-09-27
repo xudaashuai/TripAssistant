@@ -52,7 +52,7 @@ class WechatClient {
         },
       })
     );
-    console.log(response);
+    console.log(await response.text());
   }
 
   async request(url: string) {
