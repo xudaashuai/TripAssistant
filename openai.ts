@@ -17,7 +17,6 @@ const promot2 = `
 2023 年 10月 7号，租车，开车前往淄博。入住淄博喜来登。
 2023 年 10月 8号，开车前往济南。在济南市区游玩
 2023 年 10月 9号，在济南返回各自的出发地。
-
 `;
 
 export async function chatgpt(content: string) {
