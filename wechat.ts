@@ -1,4 +1,7 @@
 /// <reference lib="deno.unstable" />
+
+import { Message } from "./types.ts";
+
 const BASE_URL = "https://api.weixin.qq.com/cgi-bin/";
 
 const client = await createWechatClient();
@@ -19,7 +22,8 @@ class WechatClient {
   }
 
   async refreshAccessToken() {
-    const token = getAccessToken();
+    const token = await getAccessToken();
+    console.log("access_token", token);
     await this.kvClient.set(["access_token"], token);
     return token;
   }
@@ -32,6 +36,25 @@ class WechatClient {
     return this.refreshAccessToken();
   }
 
+  async sendMessage(message: Message, content: string) {
+    const url = `${BASE_URL}message/custom/send?access_token=${await this.getAccessToken()}`;
+    await fetch(
+      new Request(url, {
+        method: "POST",
+        body: JSON.stringify({
+          touser: message.FromUserName,
+          msgtype: "text",
+          text: {
+            content,
+          },
+        }),
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+    );
+  }
+
   async request(url: string) {
     const res = await fetch(url);
 
@@ -40,7 +63,7 @@ class WechatClient {
 }
 
 async function getAccessToken(): Promise<string | null> {
-  const url = `${BASE_URL}/token?grant_type=client_credential&appid=${Deno.env.get(
+  const url = `${BASE_URL}token?grant_type=client_credential&appid=${Deno.env.get(
     "APP_ID"
   )}&secret=${Deno.env.get("APP_SECRET")}`;
 
