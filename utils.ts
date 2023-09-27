@@ -1,6 +1,6 @@
 import { Message } from "./types.ts";
 
-export function buildReplyResponse(replyMessage: Message, content: string) {
+export function buildReplyResponse(replyMessage: Message, content?: string) {
   return `<xml>
   <ToUserName>${replyMessage.FromUserName}</ToUserName>
   <FromUserName>${replyMessage.ToUserName}</FromUserName>
