@@ -1,4 +1,4 @@
-const TOKEN = "ppp"; // 替换为你在微信公众平台设置的 Token
+const TOKEN = Deno.env.get("WECHAT_TOKEN"); // 替换为你在微信公众平台设置的 Token
 async function checkSignature(
   signature: string,
   timestamp: string,
