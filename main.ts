@@ -1,9 +1,9 @@
 const TOKEN = Deno.env.get("WECHAT_TOKEN"); // 替换为你在微信公众平台设置的 Token
-import { encodeHex } from "https://deno.land/std@0.203.0/encoding/hex.ts";
-import { parse } from "https://deno.land/x/xml@2.1.1/mod.ts";
+
 import { EventMessage, Message, TextMessage } from "./types.ts";
 import { buildReplyResponse } from "./utils.ts";
 import { chatgpt } from "./openai.ts";
+import { encodeHex, parse } from "./deps.ts";
 
 async function checkSignature(
   signature: string,

@@ -1,4 +1,5 @@
-import { OpenAI } from "https://deno.land/x/openai@1.4.2/mod.ts";
+import { OpenAI } from "./deps.ts";
+
 export const openAI = new OpenAI(Deno.env.get("CHATGPT_SECRET")!, {
   baseUrl: "https://api.chatanywhere.com.cn",
 });
