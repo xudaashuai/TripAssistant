@@ -33,7 +33,7 @@ async function handleGet(req: Request) {
 }
 
 function handleEvent(message: EventMessage) {
-  if (message.event === "subscribe") {
+  if (message.Event === "subscribe") {
     return new Response(buildReplyResponse(message));
   }
   return new Response();

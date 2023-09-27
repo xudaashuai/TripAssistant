@@ -12,7 +12,7 @@ export interface TextMessage extends BaseMessage {
 
 export interface EventMessage extends BaseMessage {
   MsgType: "event";
-  event: string;
+  Event: string;
 }
 
 export type Message = TextMessage | EventMessage;
