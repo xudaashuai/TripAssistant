@@ -1,12 +1,11 @@
 const TOKEN = "ppp"; // 替换为你在微信公众平台设置的 Token
-import { encodeToString } from "https://deno.land/std/encoding/hex.ts";
 async function checkSignature(
   signature: string,
   timestamp: string,
   nonce: string
 ) {
   const arr = [TOKEN, timestamp, nonce].sort().join("");
-  const res = encodeToString(
+  const res = new TextDecoder().decode(
     new Uint8Array(
       await crypto.subtle.digest("sha-1", new TextEncoder().encode(arr))
     )
