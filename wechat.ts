@@ -1,3 +1,5 @@
+/// <reference lib="deno.unstable" />
+
 import { Message } from "./types.ts";
 
 const BASE_URL = "https://api.weixin.qq.com/cgi-bin/";
