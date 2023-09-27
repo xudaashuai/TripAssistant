@@ -11,9 +11,7 @@ async function checkSignature(
 ) {
   const arr = [TOKEN, timestamp, nonce].sort().join("");
   const res = encodeHex(
-    new TextDecoder().decode(
-      await crypto.subtle.digest("sha-1", new TextEncoder().encode(arr))
-    )
+    await crypto.subtle.digest("sha-1", new TextEncoder().encode(arr))
   );
 
   console.log(res, signature);
