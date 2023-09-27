@@ -11,6 +11,7 @@ function checkSignature(
   crypto.subtle.digest("SHA-1", computedSignature).then((digest) => {
     hash.set(new Uint8Array(digest));
   });
+  console.log(hash, signature);
   return (
     signature ===
     Array.from(hash)
