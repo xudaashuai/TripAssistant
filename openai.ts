@@ -33,7 +33,17 @@ export async function chatgpt(content: string) {
 
     const response = await openAI.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: content }],
+      messages: [
+        {
+          role: "user",
+          content: `
+${promot1}
+${promot2}
+接下来是我的问题
+${content}
+      `,
+        },
+      ],
     });
     return response.choices[0].message.content;
   } catch (e) {

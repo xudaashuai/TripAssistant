@@ -66,6 +66,6 @@ Deno.serve(async (req: Request) => {
     return handleGet(req);
   }
   const response = await handlePost(req);
-  console.log(response);
+  console.log(await response.text());
   return response;
 });
