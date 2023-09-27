@@ -54,13 +54,6 @@ function handleTextMessage(message: TextMessage) {
   return new Response();
 }
 
-console.log({
-  APP_ID: Deno.env.get("APP_ID"),
-  APP_SECRET: Deno.env.get("APP_SECRET"),
-  CHATGPT_SECRET: Deno.env.get("CHATGPT_SECRET"),
-  WECHAT_TOKEN: Deno.env.get("WECHAT_TOKEN"),
-});
-
 async function handlePost(req: Request) {
   const message = parse(await req.text()).xml as unknown as Message;
   console.log(message);
