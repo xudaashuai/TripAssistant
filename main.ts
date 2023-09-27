@@ -1,8 +1,6 @@
 const TOKEN = Deno.env.get("WECHAT_TOKEN"); // 替换为你在微信公众平台设置的 Token
-import {
-  decodeHex,
-  encodeHex,
-} from "https://deno.land/std@0.203.0/encoding/hex.ts";
+import { encodeHex } from "https://deno.land/std@0.203.0/encoding/hex.ts";
+import { parse } from "https://deno.land/x/xml@2.1.1/mod.ts";
 
 async function checkSignature(
   signature: string,
@@ -18,8 +16,7 @@ async function checkSignature(
   return signature === res;
 }
 
-Deno.serve(async (req: Request) => {
-  console.log(req);
+async function handleGet(req: Request) {
   const url = new URL(req.url, `http://${req.headers.get("host")}`);
   const signature = url.searchParams.get("signature") || "";
   const timestamp = url.searchParams.get("timestamp") || "";
@@ -31,4 +28,17 @@ Deno.serve(async (req: Request) => {
     return new Response(echostr);
   }
   return new Response();
+}
+
+async function handlePost(req: Request) {
+  const params = parse(await req.text());
+  console.log(params);
+  return new Response();
+}
+
+Deno.serve((req: Request) => {
+  if (req.method === "GET") {
+    return handleGet(req);
+  }
+  return handlePost(req);
 });
