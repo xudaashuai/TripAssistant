@@ -22,15 +22,6 @@ const promot2 = `
 
 export async function chatgpt(content: string) {
   try {
-    await openAI.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: promot1 }],
-    });
-    await openAI.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: promot2 }],
-    });
-
     const response = await openAI.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
