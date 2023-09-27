@@ -50,9 +50,11 @@ async function handlePost(req: Request) {
   return new Response();
 }
 
-Deno.serve((req: Request) => {
+Deno.serve(async (req: Request) => {
   if (req.method === "GET") {
     return handleGet(req);
   }
-  return handlePost(req);
+  const response = await handlePost(req);
+  console.log(response);
+  return response;
 });
