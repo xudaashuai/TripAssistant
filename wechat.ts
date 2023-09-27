@@ -36,7 +36,8 @@ class WechatClient {
 
   async sendMessage(message: Message, content?: string) {
     const url = `${BASE_URL}message/custom/send?access_token=${await this.getAccessToken()}`;
-    await fetch(
+
+    const response = await fetch(
       new Request(url, {
         method: "POST",
         body: JSON.stringify({
@@ -51,6 +52,7 @@ class WechatClient {
         },
       })
     );
+    console.log(response);
   }
 
   async request(url: string) {
