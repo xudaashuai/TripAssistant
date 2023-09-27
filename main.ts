@@ -20,6 +20,7 @@ function checkSignature(
 }
 
 Deno.serve((req: Request) => {
+  console.log(req);
   const url = new URL(req.url, `http://${req.headers.get("host")}`);
   const signature = url.searchParams.get("signature") || "";
   const timestamp = url.searchParams.get("timestamp") || "";
