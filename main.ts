@@ -27,6 +27,7 @@ Deno.serve((req: Request) => {
   const nonce = url.searchParams.get("nonce") || "";
   const echostr = url.searchParams.get("echostr") || "";
 
+  console.log(signature, timestamp, nonce, echostr);
   if (checkSignature(signature, timestamp, nonce)) {
     return new Response(echostr);
   }
