@@ -22,7 +22,7 @@ async function getChatContext(
 
 export async function chatgpt(message: TextMessage) {
   if (message.Content === "/:bye") {
-    await kvClient.set([`chat_${message.FromUserName}`], JSON.stringify({
+    await kvClient.set([`chat_${message.FromUserName}`], JSON.stringify([{
       role: "user",
       content: `
       你是 403 旅行助手以及所有事情的决策助手，我会将我们的行程发给你，你通过我们的行程信息回答我们的问题，帮助我们做出判断，当你认为你无法做出判断时，请随机选一个选项回答。
@@ -38,7 +38,7 @@ export async function chatgpt(message: TextMessage) {
       2023 年 10月 9号，在济南返回各自的出发地。
       同时，你还需要承担分歧解决的功能，当我们的问题是让你帮我们做出一个决定时，你必须通过分析几个选项结合一些随机性给出一个确切的答复，请不要回复你无法给出建议。
   `,
-    }) );
+    }]) );
     return "/:bye";
   }
 
