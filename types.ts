@@ -15,4 +15,9 @@ export interface EventMessage extends BaseMessage {
   Event: string;
 }
 
-export type Message = TextMessage | EventMessage;
+export interface VoiceMessage extends BaseMessage {
+  MsgType: "voice";
+  Recognition?: string;
+}
+
+export type Message = TextMessage | EventMessage | VoiceMessage;

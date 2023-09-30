@@ -56,6 +56,13 @@ async function handlePost(req: Request) {
   if (message.MsgType === "event") {
     return handleEvent(message);
   }
+  if (message.MsgType === "voice" && message.Recognition) {
+    return handleTextMessage({
+      ...message,
+      MsgType: "text",
+      Content: message.Recognition,
+    });
+  }
 
   if (message.MsgType === "text") {
     return handleTextMessage(message);
