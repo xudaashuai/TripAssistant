@@ -20,6 +20,10 @@ const promot2 = `
 2023 年 10月 9号，在济南返回各自的出发地。
 `;
 
+const promot3 = `
+同时，你还需要承担分歧解决的功能，当我们问你几个选项中选哪一个时，你必须通过分析几个选项给出一个确切的答复。
+`;
+
 export async function chatgpt(content?: string) {
   try {
     const response = await openAI.createChatCompletion({
@@ -30,6 +34,7 @@ export async function chatgpt(content?: string) {
           content: `
 ${promot1}
 ${promot2}
+${promot3}
 接下来是我的问题
 ${content}
       `,
