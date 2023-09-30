@@ -33,8 +33,6 @@ async function handleGet(req: Request) {
   return new Response();
 }
 
-console.log(Deno.env.toObject());
-
 function handleEvent(message: EventMessage) {
   if (message.Event === "subscribe") {
     return new Response(
@@ -48,9 +46,7 @@ function handleEvent(message: EventMessage) {
 }
 
 async function handleTextMessage(message: TextMessage) {
-  return new Response(
-    buildReplyResponse(message, await chatgpt(message.Content))
-  );
+  return new Response(buildReplyResponse(message, await chatgpt(message)));
 }
 
 async function handlePost(req: Request) {
