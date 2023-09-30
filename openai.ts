@@ -27,7 +27,7 @@ const promot3 = `
 export async function chatgpt(content?: string) {
   try {
     const response = await openAI.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "GPT-3.5-Turbo-16K",
       messages: [
         {
           role: "user",
