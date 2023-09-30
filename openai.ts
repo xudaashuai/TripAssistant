@@ -6,7 +6,7 @@ export const openAI = new OpenAI(Deno.env.get("CHATGPT4_SECRET")!, {
 export async function chatgpt(content?: string) {
   try {
     const response = await openAI.createChatCompletion({
-      model: "GPT-4",
+      model: "gpt-4-32k-0613",
       messages: [
         {
           role: "user",
