@@ -32,6 +32,8 @@ export async function chatgpt(message: TextMessage) {
     content: message.Content,
   });
 
+  console.log(context);
+
   try {
     const response = await openAI.createChatCompletion({
       model: "gpt-4",
