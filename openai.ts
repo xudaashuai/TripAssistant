@@ -45,6 +45,6 @@ export async function chatgpt(message: TextMessage) {
     kvClient.set([`chat_${message.FromUserName}`], JSON.stringify(context));
     return response.choices[0].message.content || "";
   } catch (e) {
-    console.error(e);
+    console.error(e.message, e.errMsg);
   }
 }
